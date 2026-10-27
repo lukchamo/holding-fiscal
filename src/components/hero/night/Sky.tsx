@@ -44,6 +44,9 @@ interface ArcGeo {
   cx: number;
   cy: number;
   r: number;
+  /** Ángulos (grados) del recorrido de la luna y del sol sobre el arco. */
+  moon: [number, number];
+  sun: [number, number];
 }
 
 /** Cielo de la historia: degradado noche → amanecer, estrellas, el arco con la luna que se pone y el sol que sale, y la ciudad. */
@@ -60,8 +63,9 @@ export function Sky({ p, palette }: { p: MotionValue<number>; palette: SkyPalett
           <span key={i} style={{ left: `${st.x}%`, top: `${st.y}%`, width: st.r * 2, height: st.r * 2, animationDelay: `${-st.d}s`, animationDuration: `${st.t}s` } as CSSProperties} />
         ))}
       </motion.div>
-      <ArcLayer p={p} palette={palette} geo={{ w: 1600, h: 900, cx: 800, cy: 900, r: 690 }} className={s.onlyDesk} />
-      <ArcLayer p={p} palette={palette} geo={{ w: 600, h: 1000, cx: 300, cy: 700, r: 268 }} className={s.onlyMob} />
+      {/* En escritorio, la luna y el sol recorren el tramo derecho del arco, fuera de la columna de texto. */}
+      <ArcLayer p={p} palette={palette} geo={{ w: 1600, h: 900, cx: 800, cy: 900, r: 690, moon: [38, 8], sun: [2, 34] }} className={s.onlyDesk} />
+      <ArcLayer p={p} palette={palette} geo={{ w: 600, h: 1000, cx: 300, cy: 700, r: 268, moon: [116, 174], sun: [3, 50] }} className={s.onlyMob} />
       <City p={p} palette={palette} />
     </motion.div>
   );
@@ -71,12 +75,12 @@ const rad = (deg: number) => (deg * Math.PI) / 180;
 
 function ArcLayer({ p, palette, geo, className }: { p: MotionValue<number>; palette: SkyPalette; geo: ArcGeo; className: string }) {
   const { w, h, cx, cy, r } = geo;
-  // La luna se pone por la izquierda; el sol sale por la derecha, sobre el mismo arco.
-  const moonA = useTransform(p, [0, 0.56], [116, 174]);
+  // La luna baja hasta el horizonte y el sol sale después, sobre el mismo arco.
+  const moonA = useTransform(p, [0, 0.56], geo.moon);
   const moonX = useTransform(moonA, (a) => cx + r * Math.cos(rad(a)));
   const moonY = useTransform(moonA, (a) => cy - r * Math.sin(rad(a)));
   const moonO = useTransform(p, [0, 0.46, 0.56], [1, 1, 0]);
-  const sunA = useTransform(p, [0.53, 1], [3, 50]);
+  const sunA = useTransform(p, [0.53, 1], geo.sun);
   const sunX = useTransform(sunA, (a) => cx + r * Math.cos(rad(a)));
   const sunY = useTransform(sunA, (a) => cy - r * Math.sin(rad(a)));
   const sunO = useTransform(p, [0.53, 0.6], [0, 1]);
