@@ -1,0 +1,50 @@
+.pill {
+  position: fixed;
+  left: max(12px, env(safe-area-inset-left, 0px));
+  bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sheet) 88%, transparent);
+  border: 1.5px solid var(--line2);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 13px;
+}
+
+.label {
+  padding: 0 8px 0 10px;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.pill a {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color var(--dur-2) ease, color var(--dur-2) ease;
+}
+
+.pill a:hover {
+  background: var(--dust);
+}
+
+.pill a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (max-width: 759px) {
+  .pill {
+    display: none;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  // Despliegue en Cloudflare Workers con Static Assets: el export estático de
+  // Next.js (./out) se sirve desde la red de Cloudflare, sin código de servidor.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "resguardo",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

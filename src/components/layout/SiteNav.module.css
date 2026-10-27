@@ -1,0 +1,130 @@
+.bar {
+  position: relative;
+  z-index: 20;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  min-height: 44px;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2px 4px;
+}
+
+.links a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 12px 10px;
+  color: var(--char);
+  border-radius: 10px;
+}
+
+.links a:hover {
+  color: var(--ink);
+}
+
+.round {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line2);
+  background: var(--sheet);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.menu {
+  display: none;
+}
+
+.right .cta {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1099px) {
+  .links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% - 4px);
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--sheet);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 8px;
+  }
+  .links.open {
+    display: flex;
+    animation: in var(--dur-2) var(--ease-out) both;
+  }
+  .links a {
+    padding: 14px;
+    font-size: 17px;
+    border-radius: 12px;
+  }
+  .menu {
+    display: grid;
+  }
+}
+
+@media (max-width: 519px) {
+  .right .cta {
+    display: none;
+  }
+}
+
+/* Sobre el cielo nocturno de la portada 3 */
+.bar[data-tone="night"] .logo,
+.bar[data-tone="night"] .links a {
+  color: #f3eee7;
+}
+
+.bar[data-tone="night"] .round {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #f3eee7;
+}
+
+.bar[data-tone="night"] :global(.btn-dark) {
+  background: #f3eee7;
+  border-color: #f3eee7;
+  color: #1b1d2b;
+}
+
+@media (max-width: 1099px) {
+  .bar[data-tone="night"] .links a {
+    color: var(--char);
+  }
+}

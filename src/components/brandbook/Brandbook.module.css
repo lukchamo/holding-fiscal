@@ -1,0 +1,417 @@
+.page {
+  padding-bottom: 40px;
+}
+
+.head {
+  padding-top: 28px;
+  padding-bottom: 8px;
+}
+
+.head h1 {
+  font-size: clamp(38px, 4vw + 16px, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-top: 6px;
+  text-wrap: balance;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.kicker {
+  margin: 18px 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ember-ink);
+}
+
+.split {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 48px;
+  }
+}
+
+.split h2 {
+  font-family: var(--serif-italic);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(40px, 3vw + 24px, 64px);
+}
+
+.copy {
+  font-size: 18px;
+  color: var(--char);
+  margin: 12px 0 0;
+  max-width: 36rem;
+}
+
+.facts {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.facts li {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--char);
+}
+
+.facts b {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--slate);
+  padding-top: 2px;
+}
+
+/* Escenario del logotipo */
+.logoStage {
+  position: relative;
+  min-height: 340px;
+  border-radius: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--sheet);
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.logoStage[data-tone="ink"] {
+  background: #1d1f25;
+  border-color: #1d1f25;
+  color: #fdf9f4;
+}
+
+.logoLockup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: clamp(54px, 4vw + 30px, 92px);
+  line-height: 1;
+}
+
+.bigWord {
+  font-size: 1em;
+}
+
+.midWord {
+  font-size: 34px;
+}
+
+.replay {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  min-height: 40px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media (max-width: 559px) {
+  .logoLockup {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .logoLockup svg {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+/* Construcción */
+.construction {
+  margin: 32px 0 0;
+  background: var(--sheet);
+  border: 1.5px solid var(--line);
+  border-radius: 28px;
+  padding: 18px;
+}
+
+.construction svg {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.construction figcaption {
+  text-align: center;
+  font-size: 14px;
+  color: var(--slate);
+  margin-top: 6px;
+}
+
+.gridBox {
+  fill: var(--paper);
+  stroke: var(--line2);
+  stroke-width: 0.12;
+}
+
+.gridLine {
+  stroke: var(--line2);
+  stroke-width: 0.06;
+}
+
+.gStroke {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+}
+
+.gRays {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+}
+
+.gDot {
+  fill: var(--ember);
+}
+
+.gGuide {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 0.1;
+  stroke-dasharray: 0.4 0.4;
+}
+
+.leader {
+  stroke: var(--slate);
+  stroke-width: 0.08;
+}
+
+.note {
+  font-family: var(--sans);
+  font-size: 1.35px;
+  font-weight: 600;
+  fill: var(--char);
+}
+
+/* Variantes */
+.variants {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.variant {
+  min-height: 140px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px;
+  border: 1.5px solid var(--line);
+}
+
+.variant[data-tone="paper"] {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.variant[data-tone="ink"] {
+  background: #2d2f34;
+  border-color: #2d2f34;
+  color: #fdf9f4;
+}
+
+.variant[data-tone="ember"] {
+  background: #f67748;
+  border-color: #f67748;
+  color: #2d2f34;
+}
+
+.onEmber {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: #fdf9f4;
+}
+
+.onEmber svg {
+  width: 48px;
+  height: 48px;
+}
+
+.sizes {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.sizes span {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.sizes small {
+  font-size: 12px;
+  color: var(--slate);
+}
+
+/* Animación */
+.timeline {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 52rem;
+}
+
+.timeline li {
+  position: relative;
+  padding-top: 18px;
+  font-size: 16px;
+  color: var(--char);
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+}
+
+.timeline li::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: var(--a);
+  width: calc(var(--b) - var(--a));
+  height: 6px;
+  border-radius: 3px;
+  background: var(--ember);
+}
+
+.timeline b {
+  font-variant-numeric: tabular-nums;
+  margin-right: 6px;
+}
+
+.small {
+  font-size: 14px;
+  color: var(--slate);
+  max-width: 52rem;
+}
+
+.small code {
+  font-size: 13px;
+  background: var(--dust);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+.h3 {
+  font-size: 28px;
+  margin-top: 40px;
+}
+
+.checks {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.checks > div {
+  background: var(--sheet);
+  border: 1.5px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.checks h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+
+.checks ul {
+  margin: 0;
+  padding: 0 0 0 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--char);
+  font-size: 15px;
+}
+
+.checks :global(.tag) {
+  margin-right: 6px;
+}
+
+/* Aplicaciones */
+.og {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 900px;
+  margin-top: 22px;
+  border-radius: 18px;
+  border: 1.5px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.favicons {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.favicon {
+  display: grid;
+  place-items: center;
+  border-radius: 22%;
+  background: var(--sheet);
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+}
+
+.favicon.app {
+  width: 96px;
+  height: 96px;
+  background: #2d2f34;
+  border-color: #2d2f34;
+}

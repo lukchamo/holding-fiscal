@@ -1,0 +1,64 @@
+.footer {
+  border-top: 1.5px solid var(--line);
+  padding: 28px 0 40px;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: var(--serif-italic);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.tagline {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--char);
+  margin-left: 10px;
+}
+
+.heroes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--slate);
+}
+
+.heroes a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line2);
+  background: var(--sheet);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.heroes a[aria-current="page"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.meta {
+  font-size: 14px;
+  color: var(--slate);
+}
+
+.meta p {
+  margin: 0 0 6px;
+}

@@ -1,0 +1,508 @@
+/* ---------- Esqueleto del scrollytelling ---------- */
+.scrolly {
+  display: grid;
+  gap: 0 56px;
+  margin-top: 40px;
+}
+
+.stage {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 10px);
+  z-index: 2;
+  background: var(--paper);
+  height: auto;
+  min-height: 0;
+  padding: 22px 0 12px;
+}
+
+.stepsCol {
+  position: relative;
+  z-index: 1;
+}
+
+.st {
+  min-height: 55vh;
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 0 24px;
+}
+
+.st:first-child {
+  padding-top: 8vh;
+}
+
+.st:last-child {
+  min-height: 60vh;
+}
+
+.stK {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ember-ink);
+  margin: 0 0 6px;
+}
+
+.st h3 {
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.st p {
+  margin: 10px 0 0;
+  font-size: 18px;
+}
+
+.st .stK {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+/* Los pasos inactivos se apagan con color (gris pizarra, contraste AA) y no con opacidad. */
+.stInner {
+  max-width: 30rem;
+  color: var(--slate);
+  transition: color 0.4s ease;
+}
+
+.stInner h3,
+.stInner p,
+.stInner .stK {
+  color: inherit;
+  transition: color 0.4s ease;
+}
+
+.active .stInner {
+  color: var(--char);
+}
+
+.active .stInner h3 {
+  color: var(--ink);
+}
+
+.active .stInner .stK {
+  color: var(--ember-ink);
+}
+
+/* Pie del escenario en móvil */
+.stageCap {
+  display: block;
+  padding: 14px 2px 4px;
+  min-height: 132px;
+}
+
+.stageCap .stK {
+  font-size: 13px;
+  margin: 0 0 2px;
+}
+
+.stageCap h3 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.capP {
+  margin: 6px 0 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--char);
+}
+
+/* Indicador de progreso (móvil) */
+.dots {
+  display: flex;
+  gap: 4px;
+  padding: 2px 2px 0;
+}
+
+.dots span {
+  flex: 1 1 0;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  transition: background-color var(--dur-3) ease;
+}
+
+.dots .dotOn {
+  background: var(--ember);
+}
+
+@media (max-width: 819px) {
+  .stepsCol .stInner {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 820px) {
+  .scrolly {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+  .stage {
+    top: 12vh;
+    height: 72vh;
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0;
+  }
+  .stepsCol {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .st {
+    min-height: 72vh;
+    align-items: center;
+    padding: 24px 0;
+  }
+  .stageCap,
+  .dots {
+    display: none;
+  }
+}
+
+/* ---------- Pila de hojas ---------- */
+.stack {
+  position: relative;
+  height: 270px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+@media (min-width: 820px) {
+  .stack {
+    height: 100%;
+  }
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  min-height: 240px;
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.6s var(--ease-out), opacity 0.5s ease;
+  transform-origin: top center;
+  --d: 0;
+}
+
+@media (min-width: 820px) {
+  .sheet {
+    top: 14%;
+    min-height: 260px;
+  }
+}
+
+.sheet[data-pos="next"] {
+  opacity: 0;
+  transform: translateY(48px);
+}
+
+.sheet[data-pos="front"] {
+  opacity: 1;
+  transform: none;
+}
+
+.sheet[data-pos="behind"] {
+  opacity: calc(1 - var(--d) * 0.28);
+  transform: translateY(calc(var(--d) * -16px)) scale(calc(1 - var(--d) * 0.05));
+}
+
+.shT {
+  font-family: var(--serif);
+  font-size: 20px;
+}
+
+.shR {
+  font-size: 15px;
+  color: var(--char);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.shR b {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.f {
+  border-radius: 6px;
+  padding: 2px 6px;
+  margin: 0 -6px;
+  transition: background 0.5s ease 0.3s;
+}
+
+.sheet[data-pos="front"] .f {
+  background: var(--ember-tint);
+}
+
+.d2 {
+  transition-delay: 0.9s !important;
+}
+
+.d3 {
+  transition-delay: 1.5s !important;
+}
+
+.appear {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.sheet[data-pos="front"] .appear,
+.sheet[data-pos="behind"] .appear {
+  opacity: 1;
+  transform: none;
+}
+
+.a1 {
+  transition-delay: 0.25s;
+}
+
+.a2 {
+  transition-delay: 0.8s;
+}
+
+.a3 {
+  transition-delay: 1.35s;
+}
+
+.a4 {
+  transition-delay: 1.9s;
+}
+
+.stamp {
+  align-self: flex-end;
+  margin-top: 6px;
+  border: 2.5px solid var(--ember);
+  color: var(--ember-ink);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 15px;
+  transform: rotate(-6deg) scale(1.6);
+  opacity: 0;
+  transition: transform 0.45s var(--ease-stamp) 0.6s, opacity 0.3s ease 0.6s;
+}
+
+.sheet[data-pos="front"] .stamp {
+  transform: rotate(-6deg) scale(1);
+  opacity: 1;
+}
+
+.mline {
+  height: 9px;
+  border-radius: 5px;
+  background: var(--line);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.7s ease;
+}
+
+.sheet[data-pos="front"] .mline,
+.sheet[data-pos="behind"] .mline {
+  transform: scaleX(1);
+}
+
+.sheet :global(.fitbar) > span {
+  width: 0;
+}
+
+.sheet[data-pos="front"] :global(.fitbar) > span,
+.sheet[data-pos="behind"] :global(.fitbar) > span {
+  width: 86%;
+}
+
+.path {
+  font-size: 14px;
+  color: var(--slate);
+}
+
+/* ---------- Diagrama de la holding ---------- */
+.tree {
+  position: relative;
+  height: 270px;
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 820px) {
+  .tree {
+    height: 100%;
+  }
+}
+
+.tree svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tree line {
+  stroke: var(--ink);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  transition: opacity 0.5s ease;
+}
+
+.lOld {
+  opacity: 1;
+}
+
+.lNew {
+  opacity: 0;
+}
+
+.s2 .lOld {
+  opacity: 0;
+}
+
+.s2 .lNew {
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+
+.node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: var(--sheet);
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  padding: 6px 9px;
+  font-weight: 600;
+  font-size: 12.5px;
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.5s ease, transform 0.6s var(--ease-out);
+}
+
+@media (min-width: 960px) {
+  .node {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+.person {
+  background: var(--ink);
+  color: var(--paper);
+  top: 12%;
+  left: 50%;
+}
+
+.foods {
+  top: 78%;
+  left: 25%;
+}
+
+.inm {
+  top: 78%;
+  left: 75%;
+}
+
+.hold {
+  top: 46%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -80%);
+  border-color: var(--ember);
+  border-width: 2px;
+}
+
+.s2 .hold {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.subs {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.2s;
+}
+
+.s3 .subs {
+  opacity: 1;
+}
+
+.tseal {
+  position: absolute;
+  right: 7%;
+  top: 28%;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ember);
+  color: var(--ember-ink);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif-italic);
+  font-style: italic;
+  font-size: 14px;
+  background: var(--sheet);
+  opacity: 0;
+  transform: rotate(-12deg) scale(1.7);
+  transition: transform 0.45s var(--ease-stamp), opacity 0.3s ease;
+}
+
+@media (min-width: 960px) {
+  .tseal {
+    width: 86px;
+    height: 86px;
+    font-size: 18px;
+  }
+}
+
+.s4 .tseal {
+  opacity: 1;
+  transform: rotate(-12deg) scale(1);
+}
+
+.tcap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2%;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--slate);
+  opacity: 0;
+  transition: opacity 0.4s ease 0.3s;
+}
+
+.s4 .tcap {
+  opacity: 1;
+}
+
+.fitRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+}

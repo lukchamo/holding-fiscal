@@ -1,0 +1,655 @@
+/* ==========================================================================
+   Portada 2 · Del caos a la calma
+   Pista alta + escenario fijo. Móvil: raíl, escenario y texto apilados.
+   Escritorio: texto a la izquierda, escenario a la derecha.
+   ========================================================================== */
+.track {
+  position: relative;
+  height: 400vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "top"
+    "stage"
+    "copy";
+  gap: 6px;
+  padding: 8px 16px 18px;
+  max-width: 1180px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.top {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.top > nav {
+  flex: 1 1 auto;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.onlyMobInline {
+  display: inline-flex;
+}
+
+@media (max-width: 959px) {
+  .top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+}
+
+.skip {
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+  text-decoration: underline;
+  text-decoration-color: var(--ember);
+  text-underline-offset: 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.stage {
+  grid-area: stage;
+  position: relative;
+  min-height: 0;
+}
+
+.onlyDesk {
+  display: none;
+}
+
+.copy {
+  grid-area: copy;
+  position: relative;
+}
+
+.chapters {
+  position: relative;
+  height: clamp(272px, 38svh, 340px);
+}
+
+.chapters > div {
+  justify-content: flex-start;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ember-ink);
+}
+
+.h1,
+.h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 3vw + 16px, 60px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.body {
+  margin: 12px 0 0;
+  font-size: clamp(16px, 0.5vw + 14px, 19px);
+  line-height: 1.5;
+  color: var(--char);
+  max-width: 34rem;
+  text-wrap: pretty;
+}
+
+.agentInline {
+  font-weight: 650;
+  color: var(--ink);
+  box-shadow: inset 0 -0.42em 0 color-mix(in srgb, var(--c) 26%, transparent);
+  border-radius: 2px;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 18px;
+}
+
+.trust {
+  display: none;
+  margin: 12px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+  letter-spacing: 0.01em;
+}
+
+.meterSlot {
+  display: none;
+  position: absolute;
+  z-index: 5;
+}
+
+/* Trazo a mano dibujado con el scroll (sin la animación de carga global) */
+.circ {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.08em;
+}
+
+.circ svg {
+  position: absolute;
+  left: -12%;
+  top: -10%;
+  width: 124%;
+  height: 124%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.circ path {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+@media (min-width: 960px) {
+  .track {
+    height: 430vh;
+  }
+  .sticky {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas:
+      "top stage"
+      "copy stage";
+    column-gap: 40px;
+    padding: 20px 28px 28px;
+  }
+  .top {
+    align-self: start;
+    padding-top: 12px;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .chapters {
+    height: min(460px, 60vh);
+  }
+  .trust {
+    display: block;
+  }
+  .chapters > div {
+    justify-content: center;
+  }
+  .onlyDesk {
+    display: block;
+  }
+  .onlyMob {
+    display: none;
+  }
+  .meterSlot {
+    display: block;
+    right: 8px;
+    bottom: 8px;
+  }
+  .meta {
+    flex: 0 0 auto;
+  }
+  .onlyMobInline {
+    display: none;
+  }
+}
+
+/* ---------- Medidor de preocupación ---------- */
+.meter {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px 10px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--sheet) 86%, transparent);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: max-content;
+}
+
+.meterHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.meterHead b {
+  color: var(--ember-ink);
+  transition: color var(--dur-3) ease;
+}
+
+.meterHead b[data-calm="true"] {
+  color: var(--green);
+}
+
+/* Variante compacta (móvil): una sola línea */
+.meterCompact {
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+.meterCompact .meterHead {
+  gap: 6px;
+}
+
+.meterCompact svg {
+  width: 64px;
+  height: 22px;
+}
+
+.meterCompact .pending {
+  display: none;
+}
+
+.pending {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--char);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Escena ---------- */
+.scene {
+  position: relative;
+  contain: layout paint;
+}
+
+.wires,
+.bigMark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wire {
+  fill: none;
+  stroke: var(--line2);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.bigMark {
+  z-index: 250;
+}
+
+.bigMark path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+}
+
+.bigMark path.bigRays {
+  stroke: var(--ember);
+}
+
+/* Papeles */
+.doc {
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.docInner {
+  width: 100%;
+  height: 100%;
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--c);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 10px 12px 10px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+  animation: float var(--dur, 6s) var(--ease-in-out) var(--delay, 0s) infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(calc(var(--amp, 0) * 5px), calc(var(--amp, 0) * -9px)) rotate(calc(var(--amp, 0) * 1.6deg));
+  }
+  66% {
+    transform: translate(calc(var(--amp, 0) * -4px), calc(var(--amp, 0) * 5px)) rotate(calc(var(--amp, 0) * -1.2deg));
+  }
+}
+
+.docType {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--slate);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.docTitle {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.15;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.docLine {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+}
+
+.badges {
+  position: relative;
+  margin-top: auto;
+  height: 20px;
+}
+
+.badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.warn {
+  background: var(--ember-tint);
+  color: var(--ember-ink);
+  animation: urgent 1.6s ease-in-out infinite;
+}
+
+.info {
+  background: var(--dust);
+  color: var(--char);
+}
+
+.ok {
+  background: var(--green-tint);
+  color: var(--green);
+}
+
+@keyframes urgent {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(246, 119, 72, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(246, 119, 72, 0.18);
+  }
+}
+
+/* Agentes */
+/* El centro del avatar cae en (left, top); la etiqueta cuelga debajo. */
+.agentWrap {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  translate: -50% calc(var(--s) / -2);
+  transform-origin: 50% calc(var(--s) / 2);
+}
+
+.avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sheet);
+  border: 3px solid var(--c);
+  color: var(--ink);
+  font-family: var(--serif);
+  box-shadow: var(--shadow);
+}
+
+.avatar[data-working="true"]::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 2px solid var(--c);
+  opacity: 0;
+  animation: ring 1.5s ease-out infinite;
+}
+
+@keyframes ring {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.86);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+.agentName {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.agentBin {
+  font-weight: 500;
+  color: var(--slate);
+}
+
+.count {
+  position: absolute;
+  translate: -50% 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--char);
+  background: var(--dust);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  z-index: 130;
+}
+
+/* Sellos y personas */
+.seal {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2.5px solid var(--ember);
+  color: var(--ember-ink);
+  background: var(--paper);
+  font-family: var(--serif-italic);
+  font-style: italic;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+}
+
+.seal::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1.2px dashed var(--ember);
+}
+
+.humans {
+  position: absolute;
+  height: 1px;
+}
+
+.human {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.face {
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--paper), var(--shadow);
+  overflow: hidden;
+}
+
+.face svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.humanLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* Resumen final */
+.summary {
+  position: absolute;
+  background: var(--sheet);
+  border: 2px solid var(--ember);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summary ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.summary li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--char);
+  white-space: nowrap;
+}
+
+.tick {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--green-tint);
+  color: var(--green);
+  flex: 0 0 18px;
+}
+
+.summaryKicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.summaryTitle {
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.summaryDot {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 0 5px var(--ember-tint);
+}
+
+/* Con «reducir movimiento»: sin pista larga; se ve el fotograma final y todos los textos */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    height: auto;
+  }
+  .sticky {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+  }
+}
+
+.track[data-reduced="true"] .chapters {
+  height: auto;
+}
+
+.track[data-reduced="true"] .chapters > div {
+  position: relative;
+  inset: auto;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  margin-bottom: 28px;
+}

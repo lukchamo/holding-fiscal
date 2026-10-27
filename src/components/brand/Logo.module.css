@@ -1,0 +1,142 @@
+/*
+ * Animación del logotipo
+ * 1. El trazo se dibuja (fuste rápido, arco con desaceleración exponencial).
+ * 2. El punto ámbar cae bajo el arco, se aplasta al tocar y se asienta.
+ * 3. La línea de calma (cala) se extiende desde el centro.
+ * 4. El nombre entra letra a letra.
+ * Todo en CSS: se reproduce aunque el JavaScript aún no haya cargado.
+ */
+.mark {
+  display: block;
+  overflow: visible;
+  flex: 0 0 auto;
+}
+
+.animated .stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: logo-draw 760ms var(--ease-out-expo) forwards;
+}
+
+.animated .s1 {
+  animation-duration: 280ms;
+  animation-timing-function: var(--ease-in-out);
+}
+
+.animated .s2 {
+  animation-delay: 200ms;
+}
+
+.animated .dot {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: logo-drop 640ms var(--ease-out) 660ms both;
+}
+
+/* lucero: la luz sube desde el fondo de las manos y destella */
+.animated .rise {
+  animation: logo-rise-dot 820ms var(--ease-out-expo) 560ms both;
+}
+
+.animated .rays {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: logo-rays 900ms var(--ease-stamp) 1080ms both;
+}
+
+@keyframes logo-rise-dot {
+  0% {
+    opacity: 0;
+    transform: translateY(9px) scale(0.5);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes logo-rays {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes logo-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes logo-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-11px) scale(0.55);
+  }
+  52% {
+    opacity: 1;
+    transform: translateY(0) scale(1.16, 0.82);
+  }
+  74% {
+    transform: translateY(-1.4px) scale(0.95, 1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes logo-line {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.word {
+  font-family: var(--serif-italic);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.wordAnimated > span {
+  display: inline-block;
+  animation: logo-rise 560ms var(--ease-out-expo) both;
+  animation-delay: calc(420ms + var(--i) * 36ms);
+}
+
+@keyframes logo-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.38em);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated .stroke {
+    stroke-dashoffset: 0;
+  }
+}

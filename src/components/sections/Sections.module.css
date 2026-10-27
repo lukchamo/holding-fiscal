@@ -1,0 +1,517 @@
+/* ---------- Equipo ---------- */
+.team {
+  display: grid;
+  gap: 18px;
+  margin-top: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.member {
+  background: var(--sheet);
+  border: 1.5px solid var(--line);
+  border-radius: 32px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.portrait {
+  width: 128px;
+  height: 128px;
+  margin: 0 0 6px;
+}
+
+.portrait svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.agentmark {
+  border-radius: 50%;
+  background: #2d2f34;
+  color: #fdf9f4;
+  display: grid;
+  place-items: center;
+}
+
+.agentmark svg {
+  width: 64px;
+  height: 64px;
+}
+
+.member h3 {
+  font-size: 24px;
+}
+
+.role {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ember-ink);
+  font-size: 15px;
+}
+
+.member p {
+  margin: 0;
+  color: var(--char);
+}
+
+.member p.role {
+  color: var(--ember-ink);
+}
+
+.member :global(.tag) {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.squadHead {
+  margin-top: 36px;
+}
+
+.squadHead h3 {
+  font-size: 28px;
+}
+
+.squadHead p {
+  margin: 6px 0 0;
+  color: var(--slate);
+}
+
+.squad {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.agent {
+  background: var(--sheet);
+  border: 1.5px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agAv {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 24px;
+  background: var(--dust);
+  border: 2.5px solid var(--c);
+  color: var(--ink);
+}
+
+.agent h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 22px;
+  margin: 0;
+}
+
+.agent p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--char);
+}
+
+.agent p.agRole {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ember-ink);
+}
+
+.agent p.agOk {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.handle {
+  margin-top: 28px;
+  background: var(--dust);
+  border-radius: 32px;
+  padding: 28px 24px;
+}
+
+.handle h3 {
+  font-size: 26px;
+}
+
+/* ---------- Más ---------- */
+.extras {
+  display: grid;
+  gap: 18px;
+  margin-top: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.xcard {
+  background: var(--dust);
+  border-radius: 32px;
+  padding: 34px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.xcard h3 {
+  font-size: 24px;
+}
+
+.xcard p {
+  margin: 0;
+  color: var(--char);
+  font-size: 16px;
+}
+
+.promises {
+  display: grid;
+  gap: 28px;
+  margin-top: 32px;
+  text-align: center;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.promises b {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 54px;
+  line-height: 1.1;
+}
+
+.promises p {
+  margin: 6px auto 0;
+  color: var(--slate);
+  max-width: 20rem;
+}
+
+/* ---------- Conectores ---------- */
+.connectors {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.ccat {
+  background: var(--sheet);
+  border: 1.5px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ccat h3 {
+  font-size: 21px;
+}
+
+.clogos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.clogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.clogo i {
+  font-style: normal;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--dust);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--char);
+}
+
+.cnote {
+  margin: 0;
+  font-size: 14px;
+  color: var(--slate);
+}
+
+.fineprint {
+  font-size: 13px;
+  color: var(--slate);
+  margin: 16px 0 0;
+}
+
+/* ---------- Privacidad ---------- */
+.trust {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.tcard {
+  background: var(--dust);
+  border-radius: 22px;
+  padding: 20px;
+}
+
+.tcard b {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 22px;
+  display: block;
+}
+
+.tcard p {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: var(--char);
+}
+
+.pii {
+  margin-top: 22px;
+  background: var(--sheet);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.piiHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 20px;
+  align-items: end;
+}
+
+.piiHead h3 {
+  font-size: 26px;
+}
+
+.piiHead :global(.muted) {
+  margin: 4px 0 0;
+}
+
+.piiTools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.piiSeg {
+  display: flex;
+  gap: 4px;
+}
+
+.piiSeg span {
+  flex: 1 1 0;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  transition: background 0.4s ease;
+}
+
+.piiSeg span.on {
+  background: var(--ember);
+}
+
+.piiBody {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 820px) {
+  .piiBody {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+}
+
+.piiDoc,
+.piiSide {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.piiLabel {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.piiText {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(18px, 0.6vw + 15px, 21px);
+  line-height: 1.8;
+}
+
+.piiT {
+  border-radius: 6px;
+  padding: 1px 4px;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.piiTok {
+  display: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 6px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+.pii[data-step="2"] .piiT {
+  background: var(--ember-tint);
+  box-shadow: inset 0 -2px 0 var(--ember);
+}
+
+.pii[data-step="3"] .piiOrig {
+  display: none;
+}
+
+.pii[data-step="3"] .piiTok {
+  display: inline;
+}
+
+.pii[data-step="4"] .piiT {
+  background: var(--green-tint);
+}
+
+.piiNote {
+  margin: 0;
+  font-size: 14px;
+  color: var(--slate);
+}
+
+.piiList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.piiList li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+  font-size: 15px;
+  animation: in 0.35s ease both;
+}
+
+.k {
+  font-weight: 700;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- Precio y FAQ ---------- */
+.offer {
+  background: var(--dust);
+  border: 2px solid var(--ember);
+  border-radius: 32px;
+  padding: 40px 26px;
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .offer {
+    grid-template-columns: 1fr 1fr;
+    padding: 48px;
+  }
+}
+
+.offer ul {
+  list-style: none;
+  margin: 0;
+  padding: 22px;
+  background: var(--sheet);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offer li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--char);
+}
+
+.faq {
+  max-width: 46rem;
+  margin: 28px auto 0;
+}
+
+.faq details {
+  border-top: 1.5px solid var(--line);
+}
+
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--slate);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq details p {
+  margin: 0 0 18px;
+  color: var(--char);
+}

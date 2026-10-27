@@ -1,0 +1,143 @@
+/* Capítulo de texto: todos apilados en el mismo hueco; solo el activo es visible */
+.chapter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  will-change: opacity, transform;
+}
+
+/* Raíl de progreso por capítulos */
+.rail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 6px;
+}
+
+.rail li {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.rail button {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  min-height: 44px;
+  justify-content: center;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--slate);
+  font: 600 12px/1.2 var(--sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rail button[aria-current="step"] {
+  color: var(--ink);
+}
+
+.railTrack {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line2);
+  overflow: hidden;
+}
+
+.railFill {
+  display: block;
+  height: 100%;
+  background: var(--ember);
+  transform-origin: left center;
+}
+
+.railLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rail[data-tone="night"] button {
+  color: rgba(243, 238, 231, 0.62);
+}
+
+.rail[data-tone="night"] button[aria-current="step"] {
+  color: #f3eee7;
+}
+
+.rail[data-tone="night"] .railTrack {
+  background: rgba(243, 238, 231, 0.2);
+}
+
+@media (max-width: 759px) {
+  .rail button:not([aria-current="step"]) .railLabel {
+    visibility: hidden;
+  }
+}
+
+/* Escenario escalable */
+.fit {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.comp {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+}
+
+.comp[data-ready="true"] {
+  opacity: 1;
+}
+
+/* Indicación de scroll */
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.cue[data-tone="night"] {
+  color: rgba(243, 238, 231, 0.75);
+}
+
+.cueDot {
+  animation: cue 1.8s var(--ease-in-out) infinite;
+}
+
+@keyframes cue {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
