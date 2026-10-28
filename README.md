@@ -13,7 +13,7 @@ Esta es la versión en producción del prototipo, construida con **Next.js 16** 
 - **Equipo y agentes, tres alternativas:** https://resguardo.lc-45e.workers.dev/equipo
 - **Probar el nombre alternativo:** https://resguardo.lc-45e.workers.dev/#lucero
 
-> Prototipo con datos de ejemplo (Andino Foods, Mariana Ortega). Quedan marcadores del prototipo original por completar: `[Nombre de la abogada]`, `[Nombre del gestor]`, `[PRECIO POR SOCIEDAD]`, `[DIRECCIÓN DE LA OFICINA]` y `[POLÍTICA DE DATOS Y ALOJAMIENTO]`.
+> Prototipo con datos de ejemplo (Andino Foods, Mariana Ortega). La abogada y el gestor llevan nombres de ejemplo, **Laura Soler** y **Pau Climent**: se cambian en `TEAM` (`src/content/data.ts`) y se actualizan en toda la web. Quedan marcadores del prototipo original por completar: `[PRECIO POR SOCIEDAD]`, `[DIRECCIÓN DE LA OFICINA]` y `[POLÍTICA DE DATOS Y ALOJAMIENTO]`.
 
 ## Qué hay
 

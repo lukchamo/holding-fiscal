@@ -6,6 +6,7 @@ import { cubicBezier } from "motion";
 import { BrandMark } from "@/components/brand/BrandLogo";
 import { useBrand } from "@/components/brand/BrandProvider";
 import { LawyerPortrait } from "@/components/sections/Portraits";
+import { TEAM } from "@/content/data";
 import { EASE } from "@/lib/motion";
 import { AGENT_COLORS, AGENT_NAMES, DRAFTS, LOG, MORNING_ROWS, draftAt, formatClock, progressAt } from "./nightData";
 import s from "./HeroNight.module.css";
@@ -125,10 +126,10 @@ function Review({ p }: { p: MotionValue<number> }) {
     <div className={s.review}>
       <div className={s.reviewHead}>
         <span className={s.reviewFace}>
-          <LawyerPortrait label="Tu abogada fiscal" />
+          <LawyerPortrait label={`${TEAM.abogada.name}, tu abogada fiscal`} />
         </span>
         <div>
-          <b>Tu abogada</b>
+          <b>{TEAM.abogada.first}, tu abogada</b>
           <span>Revisa 4 borradores</span>
         </div>
         <span className={s.coffee} aria-hidden="true">
@@ -196,7 +197,8 @@ function Morning({ p, clock }: { p: MotionValue<number>; clock: MotionValue<stri
             <MorningRow key={r} p={p} i={i} text={r} />
           ))}
         </ul>
-        <p className={s.almaSigned}>Revisado por tu abogada a las 07:52.</p>
+        {/* «Laura, tu abogada» ya se ha presentado en la revisión de las 07:30 */}
+        <p className={s.almaSigned}>Revisado por {TEAM.abogada.first} a las 07:52.</p>
         <div className={s.almaActions}>
           <span>Firmar ahora</span>
           <span>Ver detalles</span>

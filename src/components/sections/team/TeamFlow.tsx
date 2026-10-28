@@ -81,8 +81,8 @@ export function TeamFlow({ id = "equipo" }: { id?: string }) {
                     <PersonPortrait k={p.key} />
                   </span>
                   <div>
-                    <h3 id={`${id}-${p.key}`}>{p.role}</h3>
-                    <p>{p.name}</p>
+                    <h3 id={`${id}-${p.key}`}>{p.name}</h3>
+                    <p>{p.role}</p>
                   </div>
                   {on ? <Seal key={agent.name} className={s.personSeal} /> : null}
                 </article>
@@ -124,7 +124,7 @@ export function TeamFlow({ id = "equipo" }: { id?: string }) {
             <span className={s.mini} aria-hidden="true">
               <PersonPortrait k={person.key} />
             </span>
-            Lo valida {person.short}
+            Lo valida {person.first}, {person.short}
           </p>
         </div>
 

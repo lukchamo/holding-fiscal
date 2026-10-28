@@ -6,6 +6,7 @@ import { cubicBezier } from "motion";
 import { geometryFor, type BrandKey } from "@/components/brand/brands";
 import { EASE } from "@/lib/motion";
 import { AdvisorPortrait, LawyerPortrait } from "@/components/sections/Portraits";
+import { TEAM } from "@/content/data";
 import {
   AGENT_ORDER,
   AGENTS_META,
@@ -194,15 +195,21 @@ function Humans({ comp, p }: { comp: Comp; p: MotionValue<number> }) {
     <motion.div className={s.humans} style={{ top: comp.humans.y - r, left: 0, width: comp.w, opacity, y, zIndex: 210 }}>
       <div className={s.human} style={{ left: comp.humans.lawyer - r }}>
         <span className={s.face} style={{ width: r * 2, height: r * 2 }}>
-          <LawyerPortrait label="Tu abogada fiscal" />
+          <LawyerPortrait label={`${TEAM.abogada.name}, tu abogada fiscal`} />
         </span>
-        <span className={s.humanLabel}>Tu abogada</span>
+        <span className={s.humanLabel}>
+          {TEAM.abogada.first}
+          <small>abogada</small>
+        </span>
       </div>
       <div className={s.human} style={{ left: comp.humans.advisor - r }}>
         <span className={s.face} style={{ width: r * 2, height: r * 2 }}>
-          <AdvisorPortrait label="Tu gestor" />
+          <AdvisorPortrait label={`${TEAM.gestor.name}, tu gestor`} />
         </span>
-        <span className={s.humanLabel}>Tu gestor</span>
+        <span className={s.humanLabel}>
+          {TEAM.gestor.first}
+          <small>gestor</small>
+        </span>
       </div>
     </motion.div>
   );

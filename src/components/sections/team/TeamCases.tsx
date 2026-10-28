@@ -61,8 +61,8 @@ export function TeamCases({ id = "equipo" }: { id?: string }) {
                     <PersonPortrait k={p.key} />
                   </span>
                   <span>
-                    <b>{p.role}</b>
-                    <span>{p.name}</span>
+                    <b>{p.name}</b>
+                    <span>{p.role}</span>
                   </span>
                 </li>
               ))}

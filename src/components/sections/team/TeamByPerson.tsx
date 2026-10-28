@@ -21,8 +21,8 @@ export function TeamByPerson({ id = "equipo" }: { id?: string }) {
                   <PersonPortrait k={p.key} />
                 </span>
                 <div>
-                  <h3 id={`${id}-${p.key}`}>{p.role}</h3>
-                  <p className={s.name}>{p.name}</p>
+                  <h3 id={`${id}-${p.key}`}>{p.name}</h3>
+                  <p className={s.role}>{p.role}</p>
                 </div>
               </header>
               <p className={s.does}>{p.does}</p>

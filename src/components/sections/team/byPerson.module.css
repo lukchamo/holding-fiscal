@@ -55,11 +55,11 @@
   line-height: 1.15;
 }
 
-/* El nombre real llegará; mientras, el cargo manda y el marcador va discreto */
-.name {
+.role {
   margin: 3px 0 0;
-  font-size: 14px;
-  color: var(--slate);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ember-ink);
 }
 
 .does {

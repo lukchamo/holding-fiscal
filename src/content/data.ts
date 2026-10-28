@@ -1,5 +1,14 @@
 /** Contenido estructurado de la landing (fuente única para la página y el JSON-LD). */
 
+/**
+ * Las dos personas que validan y firman. Nombres de ejemplo hasta tener los
+ * reales: se cambian aquí y se actualizan en toda la web.
+ */
+export const TEAM = {
+  abogada: { name: "Laura Soler", first: "Laura", role: "Abogada fiscal" },
+  gestor: { name: "Pau Climent", first: "Pau", role: "Gestor de tu grupo" },
+} as const;
+
 export const AGENTS = [
   { initial: "A", name: "Alma", color: "var(--ag-alma)", role: "Coordina y te entrevista", text: "Organiza el trabajo de los demás agentes y te hace las preguntas justas.", validates: "tu gestor" },
   { initial: "V", name: "Vera", color: "var(--ag-vera)", role: "Correo y facturas", text: "Lee cada correo, reconoce facturas y contratos y los lleva a su sitio.", validates: "tu gestor" },

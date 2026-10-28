@@ -3,6 +3,7 @@
 import type { CSSProperties } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { LogoMark } from "@/components/brand/LogoMark";
+import { TEAM } from "@/content/data";
 import { useBrand } from "@/components/brand/BrandProvider";
 import { LawyerPortrait } from "@/components/sections/Portraits";
 import { EASE, INSTANT } from "@/lib/motion";
@@ -101,11 +102,11 @@ export function ApprovalPop({ tabKey }: { tabKey: string }) {
   return (
     <div className={`${s.pop} ${s.popApproval}`} aria-hidden="true">
       <span className={s.popFace}>
-        <LawyerPortrait label="Tu abogada" />
+        <LawyerPortrait label={TEAM.abogada.name} />
       </span>
       <span className={s.popText}>
-        <b>Tu abogada</b>
-        <span>Revisa y firma cada paso</span>
+        <b>{TEAM.abogada.name}</b>
+        <span>Tu abogada · firma cada paso</span>
       </span>
       <motion.span
         key={tabKey}

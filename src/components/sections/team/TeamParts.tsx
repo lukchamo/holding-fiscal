@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { SERVICES } from "@/content/data";
+import { SERVICES, TEAM } from "@/content/data";
 import { AdvisorPortrait, LawyerPortrait } from "../Portraits";
 import type { PersonKey, TeamAgent } from "./teamModel";
 import t from "./team.module.css";
@@ -10,13 +10,19 @@ export function TeamHeader({ headingId }: { headingId: string }) {
     <header className={t.head}>
       <p className={t.eyebrow}>Tu equipo</p>
       <h2 id={headingId}>Tú, despreocúpate. Lo tenemos todo bajo control.</h2>
-      <p className="lede">Dos personas de verdad deciden y firman. Cinco agentes de IA les preparan el trabajo, día y noche. Nos anticipamos; Hacienda, no.</p>
+      <p className="lede">
+        {TEAM.abogada.first} y {TEAM.gestor.first}, personas de verdad, deciden y firman. Cinco agentes de IA les preparan el trabajo, día y noche. Nos anticipamos; Hacienda, no.
+      </p>
     </header>
   );
 }
 
 export function PersonPortrait({ k, label }: { k: PersonKey; label?: string }) {
-  return k === "abogada" ? <LawyerPortrait label={label ?? "Ilustración de tu abogada fiscal"} /> : <AdvisorPortrait label={label ?? "Ilustración de tu gestor"} />;
+  return k === "abogada" ? (
+    <LawyerPortrait label={label ?? `Ilustración de ${TEAM.abogada.name}, tu abogada fiscal`} />
+  ) : (
+    <AdvisorPortrait label={label ?? `Ilustración de ${TEAM.gestor.name}, tu gestor`} />
+  );
 }
 
 /** Avatar del agente: su inicial en un aro de su color. */

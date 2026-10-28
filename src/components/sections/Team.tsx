@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { BrandMark } from "@/components/brand/BrandLogo";
-import { AGENTS, SERVICES } from "@/content/data";
+import { AGENTS, SERVICES, TEAM } from "@/content/data";
 import { AdvisorPortrait, LawyerPortrait } from "./Portraits";
 import s from "./Sections.module.css";
 
@@ -13,19 +13,19 @@ export function Team() {
         <div className={s.team}>
           <article className={s.member}>
             <figure className={s.portrait}>
-              <LawyerPortrait />
+              <LawyerPortrait label={`Ilustración de ${TEAM.abogada.name}, abogada fiscal`} />
             </figure>
-            <h3>[Nombre de la abogada]</h3>
-            <p className={s.role}>Abogada fiscal</p>
+            <h3>{TEAM.abogada.name}</h3>
+            <p className={s.role}>{TEAM.abogada.role}</p>
             <p>Decide la estrategia y firma. Sus agentes le dejan los borradores preparados, con las fuentes citadas.</p>
             <span className="tag ok">Le preparan: borradores con fuentes</span>
           </article>
           <article className={s.member}>
             <figure className={s.portrait}>
-              <AdvisorPortrait />
+              <AdvisorPortrait label={`Ilustración de ${TEAM.gestor.name}, gestor del grupo`} />
             </figure>
-            <h3>[Nombre del gestor]</h3>
-            <p className={s.role}>Gestor de tu grupo</p>
+            <h3>{TEAM.gestor.name}</h3>
+            <p className={s.role}>{TEAM.gestor.role}</p>
             <p>Lleva tu día a día. Sus agentes clasifican tus facturas y vigilan los plazos de todas tus sociedades.</p>
             <span className="tag ok">Le preparan: facturas y plazos</span>
           </article>
