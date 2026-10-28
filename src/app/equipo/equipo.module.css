@@ -1,0 +1,119 @@
+/* Página de comparación de las alternativas del equipo */
+.top {
+  padding: 28px 0 20px;
+}
+
+.back {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--char);
+}
+
+.eyebrow {
+  margin: 14px 0 8px;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ember-ink);
+}
+
+.title {
+  font-size: clamp(32px, 2.8vw + 20px, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+/* Selector fijo: salta a cada alternativa */
+.switch {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-block: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.switchIn {
+  display: flex;
+  gap: 8px;
+  padding-block: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.switch a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px 0 6px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line2);
+  background: var(--sheet);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch a b {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+}
+
+.block {
+  scroll-margin-top: 66px;
+}
+
+/* Cinta que abre cada alternativa */
+.banner {
+  margin-top: 40px;
+  padding: 18px 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.bannerIn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tag {
+  flex: 0 0 auto;
+  min-width: 48px;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--ember);
+  color: #2d2f34;
+  font-family: var(--serif);
+  font-size: 22px;
+}
+
+.bTitle {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.bText {
+  margin: 4px 0 0;
+  font-size: 15px;
+  opacity: 0.88;
+}

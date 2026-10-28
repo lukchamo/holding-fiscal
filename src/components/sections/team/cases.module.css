@@ -1,0 +1,410 @@
+/* ==========================================================================
+   Equipo · Alternativa C «Un caso por agente»
+   Quién firma y quién prepara, y un caso de principio a fin en cuatro pasos.
+   ========================================================================== */
+.body {
+  margin-top: 30px;
+  display: grid;
+  gap: 18px;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--slate);
+}
+
+/* «Firman»: en el móvil lo cuenta el propio caso */
+.peopleKicker,
+.people {
+  display: none;
+}
+
+.portrait {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.portrait svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Pestañas de agentes: fila de avatares en el móvil ---------- */
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 2px 10px;
+  border: 1.5px solid transparent;
+  border-radius: 16px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-2) ease,
+    border-color var(--dur-2) ease,
+    box-shadow var(--dur-2) ease;
+}
+
+.tab > span:first-child {
+  transition: box-shadow var(--dur-2) ease;
+}
+
+.tabText b {
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.tabText small,
+.tabArrow {
+  display: none;
+}
+
+.tab[aria-selected="true"] {
+  background: var(--sheet);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
+}
+
+.tab[aria-selected="true"] > span:first-child {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 22%, transparent);
+}
+
+.tab:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c) 60%, transparent);
+  outline-offset: 2px;
+}
+
+/* ---------- El caso ---------- */
+.case {
+  padding: 22px 18px 18px;
+  border-radius: 26px;
+  border: 1.5px solid var(--line);
+  background: var(--sheet);
+  box-shadow: var(--shadow);
+}
+
+.caseKicker {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--slate);
+}
+
+.caseKicker i {
+  flex: 0 0 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.case h3 {
+  margin-top: 8px;
+  font-size: clamp(24px, 1.2vw + 17px, 32px);
+  line-height: 1.15;
+}
+
+.timeline {
+  position: relative;
+  margin-top: 22px;
+}
+
+/* Raíl del color del agente al verde del resultado */
+.rail {
+  position: absolute;
+  left: 22px;
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: linear-gradient(var(--c), var(--green));
+  transform-origin: top;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.step[data-k="check"] {
+  padding-right: 58px;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--line2);
+  background: var(--sheet);
+  color: var(--slate);
+}
+
+.nodePortrait {
+  overflow: hidden;
+  border-color: var(--ember);
+}
+
+.nodePortrait svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.step[data-k="done"] .node {
+  border-color: var(--green);
+  background: var(--green-tint);
+  color: var(--green);
+  font-weight: 800;
+}
+
+.step b {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.step p {
+  margin: 3px 0 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--char);
+}
+
+.step[data-k="done"] p {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.stepSeal {
+  position: absolute;
+  top: -4px;
+  right: 0;
+}
+
+.note {
+  margin: 18px 0 0;
+  font-size: 12.5px;
+  color: var(--slate);
+}
+
+/* ---------- Pantallas medianas y anchas: lista a la izquierda, caso a la derecha ---------- */
+@media (min-width: 760px) {
+  .body {
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .kicker {
+    text-align: left;
+  }
+
+  .peopleKicker {
+    display: block;
+  }
+
+  .people {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .people li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .people b {
+    display: block;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .people li > span:last-child > span {
+    font-size: 13px;
+    color: var(--slate);
+  }
+
+  .tabs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .tab {
+    flex-direction: row;
+    gap: 12px;
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  .tab:hover {
+    background: color-mix(in srgb, var(--sheet) 70%, transparent);
+  }
+
+  .tabText b {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .tabText small {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--slate);
+  }
+
+  .tabArrow {
+    display: block;
+    margin-left: auto;
+    color: var(--c);
+    font-weight: 700;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity var(--dur-2) ease,
+      transform var(--dur-2) var(--ease-out-expo);
+  }
+
+  .tab[aria-selected="true"] .tabArrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  .case {
+    padding: 28px 30px 24px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .body {
+    grid-template-columns: 310px minmax(0, 1fr);
+    gap: 36px;
+  }
+}
+
+/* ---------- Coreografía: los pasos se encadenan (también al cambiar de agente) ---------- */
+.body[data-armed="true"]:not([data-play="true"]) .step,
+.body[data-armed="true"]:not([data-play="true"]) .rail,
+.body[data-armed="true"]:not([data-play="true"]) .stepSeal {
+  opacity: 0;
+}
+
+.body[data-play="true"] .step {
+  animation: rise 520ms var(--ease-out-expo) both;
+}
+
+.body[data-play="true"] .step[data-k="work"] {
+  animation-delay: 280ms;
+}
+
+.body[data-play="true"] .step[data-k="check"] {
+  animation-delay: 560ms;
+}
+
+.body[data-play="true"] .step[data-k="done"] {
+  animation-delay: 840ms;
+}
+
+.body[data-play="true"] .rail {
+  animation: grow 1100ms var(--ease-in-out) both;
+}
+
+.body[data-play="true"] .stepSeal {
+  animation: stamp 520ms var(--ease-stamp) 1100ms both;
+}
+
+.body[data-play="true"] .step[data-k="done"] .node {
+  animation: pop 420ms var(--ease-stamp) 1250ms both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.4);
+  }
+  to {
+    transform: none;
+  }
+}
