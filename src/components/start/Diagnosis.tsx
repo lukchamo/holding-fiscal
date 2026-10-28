@@ -310,7 +310,7 @@ function CheckItem({ warn = false, title, sub }: { warn?: boolean; title: string
 }
 
 function Credit() {
-  const { goMode } = useStart();
+  const { goMode, email } = useStart();
   const [done, setDone] = useState(false);
   return (
     <div className={s.credit}>
@@ -319,7 +319,7 @@ function Credit() {
       <label htmlFor="mail" style={{ fontWeight: 600, fontSize: 15 }}>
         Tu correo
       </label>
-      <input id="mail" type="email" autoComplete="email" placeholder="tu@empresa.com" />
+      <input id="mail" type="email" autoComplete="email" placeholder="tu@empresa.com" defaultValue={email} />
       <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
         <button type="button" className="btn btn-ember" disabled={done} onClick={() => setDone(true)}>
           {done ? "Crédito activado" : "Activar mi crédito"}

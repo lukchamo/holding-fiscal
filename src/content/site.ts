@@ -38,6 +38,7 @@ export const HERO_VARIANTS = [
   { href: "/hero-2", n: 2, label: "Del caos a la calma", hint: "Historia con scroll" },
   { href: "/hero-3", n: 3, label: "La noche de Mariana", hint: "Historia humana" },
   { href: "/hero-4", n: 4, label: "El problema, tachado", hint: "Minimalista: empieza por el problema" },
+  { href: "/hero-5", n: 5, label: "La plataforma", hint: "Producto: pestañas y panel animado" },
 ] as const;
 
 export type HeroVariant = (typeof HERO_VARIANTS)[number]["n"];

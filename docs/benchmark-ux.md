@@ -126,9 +126,9 @@
 | Patrón | Dónde |
 |---|---|
 | 1. Una metáfora con scroll *scrubbed* y recorrido corto | Portada 2: un solo recorrido papeles → pilas → firma → calma (4 capítulos, unos 4 altos de pantalla). |
-| 2. Fotograma final como alternativa | Con `prefers-reduced-motion`, ambas historias muestran el estado final y todos los textos, sin pista larga. |
+| 2. Fotograma final como alternativa | Con `prefers-reduced-motion`, ambas historias muestran el estado final y todos los textos, sin pista larga. La portada 5 no avanza sola y muestra cada pestaña ya resuelta. |
 | 3. Saltar la historia | Enlace «Saltar la historia» en el raíl, que también permite saltar a cada capítulo; nada de bucles largos sin control. |
-| 4. La persona aparece al aprobar | Portada 2: la abogada y el gestor entran justo cuando caen los V.º B.º. Portada 3: la abogada revisa con el primer café; el mensaje final dice «Revisado por tu abogada a las 07:52». |
+| 4. La persona aparece al aprobar | Portada 2: la abogada y el gestor entran justo cuando caen los V.º B.º. Portada 3: la abogada revisa con el primer café; el mensaje final dice «Revisado por tu abogada a las 07:52». Portada 5: en cada pestaña, cuando las tareas pasan a «Hecho», la tarjeta de la abogada estampa el V.º B.º. |
 | 5. «Nada sale sin tu OK» | Textos: «Nada sale sin una persona detrás, y sin tu permiso», «Tú solo firmas». |
 | 6. La regulación, arriba | Línea de confianza en el cierre de cada historia: «RGPD · Datos en la UE · Una persona firma cada paso». Solo afirmaciones que ya hacía el prototipo; no se añadió ninguna acreditación sin verificar. |
 | 7. Noche → mañana sin «nunca dormimos» | Portada 3: la noche es una bitácora con hora, agente y acción, y se cierra con el visto bueno humano. |
@@ -136,3 +136,5 @@
 | 9. Progreso visible | Raíl de capítulos en las historias e indicador de pasos en los scrollytelling de móvil. |
 | 10. Solo cifras verificables | Las cifras son del caso ilustrativo y se marcan así («Historia ilustrativa con datos de ejemplo»). No hay contadores de clientes inventados. |
 | Titular que nombra el problema (Pilot) | Portada 4: «Tres sociedades. Dos gestorías. Ningún plan.», con la corrección de la abogada (tachado, nota y V.º B.º) en lugar de una ilustración. |
+| Producto en el hero con selector segmentado (referencia: plataforma para agencias) | Portada 5: panel de la plataforma con cuatro pestañas, una por agente, que avanzan solas con barra de progreso; tarjetas que sobresalen del marco (el aviso del agente y la firma de la abogada). Se pausa al pasar el ratón, al elegir pestaña o fuera de pantalla, y tiene botón de pausa. |
+| Correo + CTA y anotaciones manuscritas (referencia: sync.ai) | Portada 5: correo con «Empezar gratis», línea de privacidad con escudo («Tus datos personales nunca llegan a la IA · Servidores en la UE») y dos notas a mano con flecha: «los agentes proponen» señala a los agentes de la barra lateral y «tu abogada firma», al sello «Revisado por tu abogada». |

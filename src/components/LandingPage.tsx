@@ -22,9 +22,12 @@ export function LandingPage({ hero, variant, navTone = "paper" }: { hero: ReactN
         <SiteNav tone={navTone} />
       </div>
       {/* Cada <Suspense> es un tramo de hidratación independiente: React 19 los
-          hidrata por separado y cede el hilo principal entre ellos (menos TBT). */}
+          hidrata por separado y cede el hilo principal entre ellos (menos TBT).
+          La portada va fuera a propósito: si su módulo cliente tarda en cargar
+          durante el prerender, un <Suspense> la sacaría del HTML inicial y React
+          la insertaría después del primer pintado (LCP tardío en móvil). */}
       <main>
-        <Suspense>{hero}</Suspense>
+        {hero}
         <Suspense>
           <StartSection />
         </Suspense>

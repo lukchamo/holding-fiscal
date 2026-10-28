@@ -19,7 +19,7 @@ export function SiteFooter({ hero }: { hero?: HeroVariant }) {
           <nav className={s.heroes} aria-label="Probar otra portada">
             <span>Probar otra portada:</span>
             {HERO_VARIANTS.map((v) => (
-              <Link key={v.href} href={v.href} aria-current={v.n === hero ? "page" : undefined} title={v.hint}>
+              <Link key={v.href} href={v.href} prefetch={false} aria-current={v.n === hero ? "page" : undefined} title={v.hint}>
                 {v.n}. {v.label}
               </Link>
             ))}

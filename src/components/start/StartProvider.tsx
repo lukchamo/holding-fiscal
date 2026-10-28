@@ -22,6 +22,9 @@ interface StartCtx {
   /** Empieza la entrevista solo si aún no ha empezado (al pulsar la pestaña). */
   ensureInterview: () => void;
   registerInterview: (api: InterviewApi | null) => void;
+  /** Correo dado en una portada; rellena el formulario del crédito. */
+  email: string;
+  setEmail: (e: string) => void;
 }
 
 const Ctx = createContext<StartCtx | null>(null);
@@ -35,6 +38,7 @@ export const scrollToId = (id: string, block: ScrollLogicalPosition = "start") =
 
 export function StartProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<Mode>("ia");
+  const [email, setEmail] = useState("");
   const interview = useRef<InterviewApi | null>(null);
 
   const registerInterview = useCallback((api: InterviewApi | null) => {
@@ -69,8 +73,8 @@ export function StartProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ mode, setMode, goMode, goInterview, focusStart, ensureInterview, registerInterview }),
-    [mode, goMode, goInterview, focusStart, ensureInterview, registerInterview],
+    () => ({ mode, setMode, goMode, goInterview, focusStart, ensureInterview, registerInterview, email, setEmail }),
+    [mode, goMode, goInterview, focusStart, ensureInterview, registerInterview, email],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

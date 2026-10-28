@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useSpring, type MotionValue } from "motion/react";
+import { useMotionValue, useMotionValueEvent, useScroll, useSpring, type MotionValue } from "motion/react";
 import { SCROLL_SPRING } from "@/lib/motion";
+import { useReducedMotionSafe } from "@/lib/useReducedMotionSafe";
 
 export interface Chapter {
   /** Identificador corto para el raíl de progreso. */
@@ -32,7 +33,8 @@ export interface Story {
  */
 export function useStory(chapters: Chapter[]): Story {
   const ref = useRef<HTMLElement | null>(null);
-  const reduced = useReducedMotion() ?? false;
+  // Seguro para la hidratación: el capítulo final cambia el texto pintado.
+  const reduced = useReducedMotionSafe();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const smooth = useSpring(scrollYProgress, SCROLL_SPRING);
   const done = useMotionValue(1);

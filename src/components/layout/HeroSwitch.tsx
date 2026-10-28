@@ -8,7 +8,7 @@ export function HeroSwitch({ current }: { current: HeroVariant }) {
     <nav className={s.pill} aria-label="Variantes de portada">
       <span className={s.label}>Portada</span>
       {HERO_VARIANTS.map((v) => (
-        <Link key={v.href} href={v.href} aria-current={v.n === current ? "page" : undefined} aria-label={`Portada ${v.n}: ${v.label}`} title={`${v.label}. ${v.hint}`}>
+        <Link key={v.href} href={v.href} prefetch={false} aria-current={v.n === current ? "page" : undefined} aria-label={`Portada ${v.n}: ${v.label}`} title={`${v.label}. ${v.hint}`}>
           {v.n}
         </Link>
       ))}

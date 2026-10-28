@@ -10,6 +10,13 @@ export const EASE = {
   stamp: [0.3, 1.4, 0.5, 1] as const,
 };
 
+/**
+ * Transición instantánea para «reducir movimiento». El estado inicial de una
+ * animación va en el HTML del servidor, así que no debe depender de la
+ * preferencia (rompería la hidratación); lo que cambia es la transición.
+ */
+export const INSTANT = { duration: 0 } as const;
+
 /** Suavizado del progreso de scroll: elimina los saltos de la rueda sin añadir retraso perceptible. */
 export const SCROLL_SPRING = { stiffness: 170, damping: 32, mass: 0.6, restDelta: 0.0005 };
 
