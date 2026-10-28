@@ -27,14 +27,14 @@ const wire = (x1: number, x2: number, h: number) => `M${x1} 0 C ${x1} ${h / 2}, 
  * agentes proponen, las personas validan y firman, tú decides. Al tocar o
  * pasar por un agente, su camino se ilumina hasta ti y su persona estampa el V.º B.º.
  */
-export function TeamFlow({ id = "equipo" }: { id?: string }) {
+export function TeamFlow({ id = "equipo", style }: { id?: string; style?: CSSProperties }) {
   const [active, setActive] = useState<string>("Nora");
   const agent = AGENTS.find((a) => a.name === active) ?? AGENTS[0];
   const person = personFor(agent);
   const example = CASES[agent.name];
 
   return (
-    <section id={id} className="section" aria-labelledby={`h-${id}`}>
+    <section id={id} className="section" style={style} aria-labelledby={`h-${id}`}>
       <div className="wrap">
         <TeamHeader headingId={`h-${id}`} />
 

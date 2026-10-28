@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteNav } from "@/components/layout/SiteNav";
 import { GrantFlow, HoldingFlow, MailFlow } from "@/components/sections/Flows";
 import { Connectors, Extras, Faq, Pricing, Privacy, Promises } from "@/components/sections/MoreSections";
-import { Team } from "@/components/sections/Team";
+import { TeamFlow } from "@/components/sections/team/TeamFlow";
 import { StartSection } from "@/components/start/StartSection";
 import type { HeroVariant } from "@/content/site";
 
@@ -32,7 +32,8 @@ export function LandingPage({ hero, variant, navTone = "paper" }: { hero: ReactN
           <StartSection />
         </Suspense>
         <Suspense>
-          <Team />
+          {/* Equipo y agentes: «El circuito» (alternativa B de /equipo). Hueco corto tras «Empezar». */}
+          <TeamFlow style={{ paddingTop: 24 }} />
         </Suspense>
         <Suspense>
           <MailFlow />

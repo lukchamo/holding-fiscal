@@ -10,7 +10,7 @@ Esta es la versión en producción del prototipo, construida con **Next.js 16** 
 - **Portada 4 · El problema, tachado:** https://resguardo.lc-45e.workers.dev/hero-4
 - **Portada 5 · La plataforma:** https://resguardo.lc-45e.workers.dev/hero-5
 - **Propuesta de marca y logotipo:** https://resguardo.lc-45e.workers.dev/marca
-- **Equipo y agentes, tres alternativas:** https://resguardo.lc-45e.workers.dev/equipo
+- **Equipo y agentes, comparación de alternativas (se eligió la B):** https://resguardo.lc-45e.workers.dev/equipo
 - **Probar el nombre alternativo:** https://resguardo.lc-45e.workers.dev/#lucero
 
 > Prototipo con datos de ejemplo (Andino Foods, Mariana Ortega). La abogada y el gestor llevan nombres de ejemplo, **Laura Soler** y **Pau Climent**: se cambian en `TEAM` (`src/content/data.ts`) y se actualizan en toda la web. Quedan marcadores del prototipo original por completar: `[PRECIO POR SOCIEDAD]`, `[DIRECCIÓN DE LA OFICINA]` y `[POLÍTICA DE DATOS Y ALOJAMIENTO]`.
@@ -24,8 +24,8 @@ Esta es la versión en producción del prototipo, construida con **Next.js 16** 
 | **Portada 3** | *La noche de Mariana.* Historia humana contada con un reloj que avanza con el scroll (23:47 → 08:15): cielo de la noche al amanecer, una bitácora nocturna de los agentes (hora, agente y acción) y el visto bueno de la abogada con el primer café. |
 | **Portada 4** | *El problema, tachado.* Minimalista: solo tipografía y tinta ámbar. Empieza por el problema («Tres sociedades. Dos gestorías. Ningún plan.») y lo corrige como una abogada que revisa un borrador: cada línea se tacha, se anota la solución («bajo una holding», «un solo equipo», «un plan en 3 semanas») y se firma con el V.º B.º. Debajo, «¿Por dónde empezamos?» con cuatro problemas que abren la entrevista con esa respuesta ya dada. |
 | **Portada 5** | *La plataforma.* Producto en primer plano: titular centrado, correo con «Empezar gratis» y un panel de la plataforma con cuatro pestañas (Hacienda, Facturas, Ayudas y Holding), una por agente. Las pestañas avanzan solas con una barra de progreso; en cada una la cifra cuenta, la gráfica se dibuja, las tareas pasan de «Pendiente» a «Hecho» y la abogada estampa el V.º B.º. Notas manuscritas: «los agentes proponen» y «tu abogada firma». El correo del titular rellena el del crédito al final de la entrevista. |
-| **Resto de la página** | Igual en las cinco: entrevista con Alma y diagnóstico en directo, videollamada o café, equipo y agentes, tres scrollytelling (correo, holding y subvención), conectores, privacidad (seudonimización paso a paso), precio y preguntas frecuentes. |
-| **Equipo (propuesta)** | `/equipo` compara las dos secciones de ahora (personas y agentes) con tres alternativas que las unen en una: **A · Quién firma qué** (agrupada por la persona que valida, sin JavaScript), **B · El circuito** (agentes → personas → tú, con el camino iluminado al tocar un agente) y **C · Un caso por agente** (qué llega, qué prepara, quién lo valida y el resultado). En el móvil pasan de unos 3.400 px a 1.300–1.900 px. |
+| **Resto de la página** | Igual en las cinco: entrevista con Alma y diagnóstico en directo, videollamada o café, el circuito del equipo (los agentes proponen, Laura y Pau validan y firman, tú decides), tres scrollytelling (correo, holding y subvención), conectores, privacidad (seudonimización paso a paso), precio y preguntas frecuentes. |
+| **Equipo** | Las dos secciones de antes (personas y agentes) se unen en **El circuito**: agentes → personas → tú, con el camino iluminado al tocar un agente y el V.º B.º de quien lo valida. En el móvil pasa de unos 3.400 px a 1.700 px. `/equipo` guarda la comparación con las otras dos alternativas: **A · Quién firma qué** y **C · Un caso por agente**. |
 | **Marca** | Símbolo nuevo animado («el abrazo»), nombre alternativo **lucero** y selector de nombre en el pie. Detalle en [`docs/marca.md`](docs/marca.md). |
 
 El pie incluye «Probar otro nombre» y «Probar otra portada»; en escritorio hay además un selector flotante 1 · 2 · 3 · 4 · 5.
@@ -54,7 +54,7 @@ src/
     start/                entrevista con Alma, diagnóstico en directo, agenda
     scrolly/              scrollytelling por pasos (correo, holding, subvención)
     sections/             equipo, conectores, privacidad, precio, FAQ…
-      team/               alternativas del equipo: A (TeamByPerson), B (TeamFlow), C (TeamCases)
+      team/               equipo: TeamFlow (B, el de la landing); TeamByPerson (A) y TeamCases (C) solo en /equipo
     brand/                marcas, logotipo animado, selector de nombre
     brandbook/            página /marca
   content/                textos y datos (una sola fuente para la página y el JSON-LD)

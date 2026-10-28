@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 };
 
 const OPTIONS = [
-  { id: "actual", tag: "Actual", title: "Las dos secciones de ahora", text: "Personas y agentes por separado, con tarjetas grandes. En el móvil ocupan unos 3.400 px de alto." },
+  { id: "actual", tag: "Antes", title: "Las dos secciones de antes", text: "Personas y agentes por separado, con tarjetas grandes. En el móvil ocupaban unos 3.400 px de alto." },
   { id: "alt-a", tag: "A", title: "Quién firma qué", text: "Una sola sección agrupada por la persona que valida. La más clara y la más corta en el móvil, y sin JavaScript." },
-  { id: "alt-b", tag: "B", title: "El circuito", text: "El recorrido entero: los agentes proponen, las personas validan y tú decides. Toca un agente y su camino se ilumina hasta ti." },
+  { id: "alt-b", tag: "B", title: "El circuito · elegida", text: "La que ya está en todas las portadas. El recorrido entero: los agentes proponen, las personas validan y tú decides. Toca un agente y su camino se ilumina hasta ti." },
   { id: "alt-c", tag: "C", title: "Un caso por agente", text: "Cada agente con un caso de principio a fin: qué llega, qué prepara, quién lo valida y el resultado." },
 ] as const;
 
@@ -48,7 +48,7 @@ export default function EquipoPage() {
           <p className={s.eyebrow}>Propuesta de diseño</p>
           <h1 className={s.title}>Equipo y agentes: tres alternativas</h1>
           <p className="lede">
-            Las dos secciones de ahora («Despreocúpate de tenerlo todo bajo control» y «Los agentes que trabajan para ti») y tres maneras de mejorarlas. Mismos datos y misma cabecera en las tres, para comparar solo el diseño.
+            Las dos secciones de antes («Despreocúpate de tenerlo todo bajo control» y «Los agentes que trabajan para ti») y las tres maneras de mejorarlas que se compararon, con los mismos datos y la misma cabecera. Se eligió la B, «El circuito», que ya está en todas las portadas.
           </p>
         </div>
       </header>
