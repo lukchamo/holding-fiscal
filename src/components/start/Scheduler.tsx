@@ -34,7 +34,7 @@ const COPY = {
   },
   cafe: {
     title: "Un café con la abogada",
-    text: "45 minutos en Castellón de la Plana. Grabamos la conversación con tu permiso y el agente prepara tu expediente mientras habláis.",
+    text: "45 minutos en Valencia. Grabamos la conversación con tu permiso y el agente prepara tu expediente mientras habláis.",
     list: ["Invitamos nosotros", "Lugar: [DIRECCIÓN DE LA OFICINA]", "Si estás lejos, lo hacemos por videollamada"],
     times: ["09:30", "11:00", "17:00"],
     cta: "Confirmar el café",

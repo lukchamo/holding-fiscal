@@ -9,7 +9,7 @@ import s from "./Start.module.css";
 const TABS: { mode: Mode; title: string; sub: string }[] = [
   { mode: "ia", title: "Entrevista virtual", sub: "Ahora mismo, unos 2 minutos" },
   { mode: "video", title: "Videollamada", sub: "30 minutos con la abogada" },
-  { mode: "cafe", title: "Un café", sub: "45 minutos en Castellón" },
+  { mode: "cafe", title: "Un café", sub: "45 minutos en Valencia" },
 ];
 
 /** «Empieza como prefieras»: entrevista virtual, videollamada o café. */

@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Portada 4 · El problema, tachado
+   Solo tipografía y una tinta: el problema en grande; la corrección, en ámbar.
+   El texto está visible desde el primer pintado (bueno para el LCP y para
+   leer); lo único que se mueve es la corrección, una sola vez y sin bucles:
+     0–760 ms     las tres líneas se asientan (solo desplazamiento)
+     1050 ms +    cada línea se tacha (560 ms) y se anota (escalonado 380 ms)
+     2350 ms      sello V.º B.º
+   ========================================================================== */
+.hero {
+  min-height: calc(100svh - 68px);
+  display: grid;
+  align-items: center;
+  padding: 24px 0 56px;
+}
+
+.inner {
+  width: 100%;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ember);
+}
+
+/* ---------- El problema ---------- */
+.title {
+  position: relative;
+  margin: 22px 0 0;
+  font-size: clamp(46px, 6vw + 12px, 104px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.line {
+  display: block;
+  animation: rise 760ms var(--ease-out-expo) calc(80ms + var(--i) * 110ms) both;
+}
+
+.problem {
+  position: relative;
+  display: inline-block;
+}
+
+/* El tachón: trazo a mano que cruza la línea a media altura de las minúsculas */
+.strike {
+  position: absolute;
+  left: -2%;
+  width: 104%;
+  top: 0.45em;
+  height: 0.2em;
+  transform: translateY(-50%);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.strike path {
+  fill: none;
+  stroke: var(--ember);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-dasharray: 1 2;
+  stroke-dashoffset: 1;
+  animation: strike 560ms var(--ease-in-out) calc(1050ms + var(--i) * 380ms) forwards;
+}
+
+/* La corrección: nota en cursiva, junto al final del tachón */
+.fix {
+  display: inline-block;
+  margin-left: 0.18em;
+  font-family: var(--serif-italic);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.3em;
+  letter-spacing: 0;
+  line-height: 1.1;
+  color: var(--ember-ink);
+  vertical-align: 1.05em;
+  white-space: nowrap;
+  animation: note 460ms var(--ease-out-expo) calc(1330ms + var(--i) * 380ms) both;
+}
+
+.fix::before {
+  content: "→ ";
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Sello de la abogada: tamaño en px acotado, para que el círculo no dependa del texto */
+.seal {
+  position: absolute;
+  right: 0;
+  bottom: 0.08em;
+  width: clamp(64px, 6vw + 22px, 108px);
+  height: clamp(64px, 6vw + 22px, 108px);
+  border-radius: 50%;
+  border: 2.5px solid var(--ember);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif-italic);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(14px, 1.2vw + 8px, 22px);
+  letter-spacing: 0;
+  line-height: 1;
+  color: var(--ember-ink);
+  background: var(--paper);
+  transform: rotate(-12deg);
+  animation: stamp 520ms var(--ease-stamp) 2350ms both;
+}
+
+.seal::after {
+  content: "";
+  position: absolute;
+  inset: 7%;
+  border-radius: 50%;
+  border: 1.5px dashed var(--ember);
+}
+
+/* ---------- La solución y el primer paso ---------- */
+.solution {
+  max-width: 40rem;
+  margin: 28px 0 0;
+  font-size: clamp(17px, 0.6vw + 15px, 21px);
+  line-height: 1.5;
+  color: var(--char);
+  text-wrap: pretty;
+}
+
+.start {
+  margin-top: 26px;
+  display: grid;
+  gap: 12px;
+}
+
+.q {
+  margin: 0;
+  font-weight: 650;
+  font-size: 15px;
+}
+
+.case {
+  font-size: 15.5px;
+}
+
+.case:hover {
+  border-color: var(--ember);
+}
+
+.alt {
+  margin: 2px 0 0;
+  font-size: 15px;
+  color: var(--slate);
+}
+
+.alt a {
+  color: var(--char);
+  font-weight: 600;
+}
+
+.trust {
+  margin: 26px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+/* En pantallas medianas y móviles, la corrección va debajo de cada línea */
+@media (max-width: 1099px) {
+  .fix {
+    display: block;
+    margin: 0.06em 0 0.34em;
+    font-size: 0.36em;
+    vertical-align: baseline;
+  }
+  .fix::before {
+    content: "↳ ";
+  }
+  .seal {
+    bottom: 0.12em;
+  }
+}
+
+@media (max-width: 559px) {
+  .title {
+    margin-top: 16px;
+  }
+  .fix {
+    font-size: 0.42em;
+  }
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes rise {
+  from {
+    transform: translateY(0.12em);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes strike {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes note {
+  from {
+    opacity: 0;
+    transform: translateX(-0.3em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: rotate(-12deg) scale(1.7);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-12deg) scale(1);
+  }
+}
+
+/* Con «reducir movimiento» se ve el estado final: tachado, corregido y firmado */
+@media (prefers-reduced-motion: reduce) {
+  .strike path {
+    stroke-dashoffset: 0;
+  }
+}

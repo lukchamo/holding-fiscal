@@ -1,6 +1,6 @@
 /** Guion de la entrevista virtual con Alma (idéntico al prototipo). */
 
-export const EXAMPLE = "Elaboramos arepas y empanadas para supermercados en Castellón";
+export const EXAMPLE = "Elaboramos arepas y empanadas para supermercados en Valencia";
 
 export type DescAnswer = { text: string; custom: boolean };
 export type Answers = { desc?: DescAnswer; soc?: number; worry?: number; cert?: number };

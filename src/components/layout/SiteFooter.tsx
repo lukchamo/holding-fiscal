@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { BrandName, BrandTagline } from "@/components/brand/BrandProvider";
 import { BrandSwitch } from "@/components/brand/BrandSwitch";
-import { HERO_VARIANTS } from "@/content/site";
+import { HERO_VARIANTS, type HeroVariant } from "@/content/site";
 import s from "./SiteFooter.module.css";
 
-export function SiteFooter({ hero }: { hero?: 1 | 2 | 3 }) {
+export function SiteFooter({ hero }: { hero?: HeroVariant }) {
   return (
     <footer className={s.footer}>
       <div className={`wrap ${s.foot}`}>

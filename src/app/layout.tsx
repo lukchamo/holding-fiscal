@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     "subvenciones para pymes",
     "notificaciones de Hacienda",
     "DEHú",
-    "gestoría Castellón",
+    "gestoría Valencia",
     "agentes de IA",
   ],
   authors: [{ name: SITE.name }],

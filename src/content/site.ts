@@ -12,7 +12,7 @@ export const SITE = {
     "Gestoría y abogada fiscal para tu grupo de empresas, con agentes de IA que se anticipan a Hacienda. Crea tu holding, ordena facturas y consigue ayudas.",
   tagline: "Tus papeles, a resguardo.",
   locale: "es_ES",
-  city: "Castellón de la Plana",
+  city: "Valencia",
   region: "Comunitat Valenciana",
   country: "ES",
   themeColor: "#FDF9F4",
@@ -37,4 +37,7 @@ export const HERO_VARIANTS = [
   { href: "/", n: 1, label: "Directa", hint: "Diagnóstico en la portada" },
   { href: "/hero-2", n: 2, label: "Del caos a la calma", hint: "Historia con scroll" },
   { href: "/hero-3", n: 3, label: "La noche de Mariana", hint: "Historia humana" },
+  { href: "/hero-4", n: 4, label: "El problema, tachado", hint: "Minimalista: empieza por el problema" },
 ] as const;
+
+export type HeroVariant = (typeof HERO_VARIANTS)[number]["n"];

@@ -229,7 +229,7 @@ function Result({ def }: { def: StepDef }) {
           <div className="tags">
             <span className="tag">Constituida en 2023</span>
             <span className="tag">7 personas</span>
-            <span className="tag">Castellón de la Plana</span>
+            <span className="tag">Valencia</span>
             <span className="tag warn">Facturación por confirmar</span>
           </div>
         </div>

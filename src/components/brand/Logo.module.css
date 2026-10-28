@@ -13,7 +13,7 @@
 }
 
 .animated .stroke {
-  stroke-dasharray: 1;
+  stroke-dasharray: 1 2;
   stroke-dashoffset: 1;
   animation: logo-draw 760ms var(--ease-out-expo) forwards;
 }

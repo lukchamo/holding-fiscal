@@ -132,6 +132,7 @@
 | 5. «Nada sale sin tu OK» | Textos: «Nada sale sin una persona detrás, y sin tu permiso», «Tú solo firmas». |
 | 6. La regulación, arriba | Línea de confianza en el cierre de cada historia: «RGPD · Datos en la UE · Una persona firma cada paso». Solo afirmaciones que ya hacía el prototipo; no se añadió ninguna acreditación sin verificar. |
 | 7. Noche → mañana sin «nunca dormimos» | Portada 3: la noche es una bitácora con hora, agente y acción, y se cierra con el visto bueno humano. |
-| 8. El usuario elige su caso | Portada 1 (tarjeta de inicio) y la entrevista con Alma («¿Qué te quita el sueño?»). |
+| 8. El usuario elige su caso | Portada 1 (tarjeta de inicio), portada 4 («¿Por dónde empezamos?»: cuatro problemas que abren la entrevista con esa respuesta ya dada) y la entrevista con Alma («¿Qué te quita el sueño?»). |
 | 9. Progreso visible | Raíl de capítulos en las historias e indicador de pasos en los scrollytelling de móvil. |
 | 10. Solo cifras verificables | Las cifras son del caso ilustrativo y se marcan así («Historia ilustrativa con datos de ejemplo»). No hay contadores de clientes inventados. |
+| Titular que nombra el problema (Pilot) | Portada 4: «Tres sociedades. Dos gestorías. Ningún plan.», con la corrección de la abogada (tachado, nota y V.º B.º) en lugar de una ilustración. |

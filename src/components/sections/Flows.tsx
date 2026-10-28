@@ -133,7 +133,7 @@ export function GrantFlow() {
                 <span>11:02</span>
                 <b className={`${f.f} ${f.d3}`}>Necesito contratar a tres personas</b>
               </span>
-              <Row k="15:20" v="Compramos a proveedores de Castellón" />
+              <Row k="15:20" v="Compramos a proveedores de Valencia" />
             </Sheet>
             <Sheet k={2}>
               <span className={f.shT}>Ayuda a la inversión productiva de pymes</span>

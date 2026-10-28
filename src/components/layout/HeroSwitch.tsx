@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { HERO_VARIANTS } from "@/content/site";
+import { HERO_VARIANTS, type HeroVariant } from "@/content/site";
 import s from "./HeroSwitch.module.css";
 
-/** Selector flotante para comparar las tres portadas durante la revisión. */
-export function HeroSwitch({ current }: { current: 1 | 2 | 3 }) {
+/** Selector flotante para comparar las portadas durante la revisión. */
+export function HeroSwitch({ current }: { current: HeroVariant }) {
   return (
     <nav className={s.pill} aria-label="Variantes de portada">
       <span className={s.label}>Portada</span>

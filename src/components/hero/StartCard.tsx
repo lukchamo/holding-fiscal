@@ -28,7 +28,7 @@ export function StartCard() {
   return (
     <div className={s.start} role="form" aria-label="Empieza tu diagnóstico">
       <label htmlFor="desc">¿Qué hace tu empresa?</label>
-      <textarea id="desc" placeholder="Por ejemplo: elaboramos arepas para supermercados en Castellón" value={desc} onChange={(e) => setDesc(e.target.value)} />
+      <textarea id="desc" placeholder="Por ejemplo: elaboramos arepas para supermercados en Valencia" value={desc} onChange={(e) => setDesc(e.target.value)} />
       <p className={s.q} id="qsoc">
         ¿Cuántas sociedades tienes?
       </p>

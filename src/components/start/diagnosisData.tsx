@@ -26,7 +26,7 @@ export interface StepDef {
 /** Pasos del diagnóstico en directo (mismos datos de ejemplo que el prototipo). */
 export function buildSteps(desc: string, socSel: number | undefined, cert: number | undefined): StepDef[] {
   const socText = ["ninguna aún", "una", "de dos a cuatro", "cinco o más"][socSel ?? -1] ?? "sin indicar";
-  const first: LogDef[] = [{ verb: "Leyendo", what: "tus respuestas", res: desc ? `«${trunc(desc)}»` : "obrador, supermercados, Castellón", ms: 1500 }];
+  const first: LogDef[] = [{ verb: "Leyendo", what: "tus respuestas", res: desc ? `«${trunc(desc)}»` : "obrador, supermercados, Valencia", ms: 1500 }];
   if (desc) first.push({ note: true, what: "Para esta demostración seguimos con una empresa de ejemplo: Andino Foods SL.", ms: 1200 });
   first.push(
     { verb: "Consultando", what: "BORME", res: "Andino Foods SL, constituida en 2023", ms: 1600 },
