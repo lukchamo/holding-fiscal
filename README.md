@@ -11,6 +11,7 @@ Esta es la versión en producción del prototipo, construida con **Next.js 16** 
 - **Portada 5 · La plataforma:** https://resguardo.lc-45e.workers.dev/hero-5
 - **Propuesta de marca y logotipo:** https://resguardo.lc-45e.workers.dev/marca
 - **Equipo y agentes, comparación de alternativas (se eligió la B):** https://resguardo.lc-45e.workers.dev/equipo
+- **Panel operativo, tres alternativas de UI:** https://resguardo.lc-45e.workers.dev/design
 - **Probar el nombre alternativo:** https://resguardo.lc-45e.workers.dev/#lucero
 
 > Prototipo con datos de ejemplo (Andino Foods, Mariana Ortega). La abogada y el gestor llevan nombres de ejemplo, **Laura Soler** y **Pau Climent**: se cambian en `TEAM` (`src/content/data.ts`) y se actualizan en toda la web. Quedan marcadores del prototipo original por completar: `[PRECIO POR SOCIEDAD]`, `[DIRECCIÓN DE LA OFICINA]` y `[POLÍTICA DE DATOS Y ALOJAMIENTO]`.
@@ -26,6 +27,7 @@ Esta es la versión en producción del prototipo, construida con **Next.js 16** 
 | **Portada 5** | *La plataforma.* Producto en primer plano: titular centrado, correo con «Empezar gratis» y un panel de la plataforma con cuatro pestañas (Hacienda, Facturas, Ayudas y Holding), una por agente. Las pestañas avanzan solas con una barra de progreso; en cada una la cifra cuenta, la gráfica se dibuja, las tareas pasan de «Pendiente» a «Hecho» y la abogada estampa el V.º B.º. Notas manuscritas: «los agentes proponen» y «tu abogada firma». El correo del titular rellena el del crédito al final de la entrevista. |
 | **Resto de la página** | Igual en las cinco: entrevista con Alma y diagnóstico en directo, videollamada o café, el circuito del equipo (los agentes proponen, Laura y Pau validan y firman, tú decides), tres scrollytelling (correo, holding y subvención), conectores, privacidad (seudonimización paso a paso), precio y preguntas frecuentes. |
 | **Equipo** | Las dos secciones de antes (personas y agentes) se unen en **El circuito**: agentes → personas → tú, con el camino iluminado al tocar un agente y el V.º B.º de quien lo valida. En el móvil pasa de unos 3.400 px a 1.700 px. `/equipo` guarda la comparación con las otras dos alternativas: **A · Quién firma qué** y **C · Un caso por agente**. |
+| **Panel operativo (propuesta)** | `/design` presenta tres maneras de abrir la app, con los mismos datos de Grupo Andino y el mismo armazón (barra lateral, búsqueda, avisos y equipo). **A · Hoy** (`/design/hoy`): lo que solo puedes hacer tú, con firmar y deshacer, la actividad del equipo, los próximos plazos y Alma. **B · Panel** (`/design/panel`): indicadores con un único filtro por sociedad, facturas por mes, vencimientos, agentes, ayudas y caja, cada gráfica con su tabla y exportación a CSV. **C · Calendario** (`/design/calendario`): cronograma por sociedad con los plazos reales de la AEAT para 2026-27 y una ficha por plazo; en el móvil, agenda. Los colores de las sociedades pasan el validador de paletas en claro y oscuro. |
 | **Marca** | Símbolo nuevo animado («el abrazo»), nombre alternativo **lucero** y selector de nombre en el pie. Detalle en [`docs/marca.md`](docs/marca.md). |
 
 El pie incluye «Probar otro nombre» y «Probar otra portada»; en escritorio hay además un selector flotante 1 · 2 · 3 · 4 · 5.
@@ -42,7 +44,7 @@ El pie incluye «Probar otro nombre» y «Probar otra portada»; en escritorio h
 
 ```
 src/
-  app/                    rutas: /, /hero-2 … /hero-5, /equipo, /marca, 404
+  app/                    rutas: /, /hero-2 … /hero-5, /equipo, /design (+ hoy, panel, calendario), /marca, 404
     og.png/route.tsx      imagen para compartir (1200 × 630) como .png real
     apple-touch-icon.png/ favicon.ico/   iconos generados en el build
     icon.svg              favicon vectorial (se adapta al modo oscuro)
@@ -53,6 +55,7 @@ src/
     story/                motor de storytelling: useStory, capítulos, raíl, escenario escalable
     start/                entrevista con Alma, diagnóstico en directo, agenda
     scrolly/              scrollytelling por pasos (correo, holding, subvención)
+    dashboard/            panel operativo: armazón de la app y alternativas A (DashHoy), B (DashPanel), C (DashCalendario)
     sections/             equipo, conectores, privacidad, precio, FAQ…
       team/               equipo: TeamFlow (B, el de la landing); TeamByPerson (A) y TeamCases (C) solo en /equipo
     brand/                marcas, logotipo animado, selector de nombre
@@ -76,7 +79,7 @@ src/
 ## SEO y rendimiento
 
 - Metadatos completos (título, descripción, canonical, Open Graph, Twitter), `lang="es"`, JSON-LD (`Organization`, `WebSite`, `ProfessionalService`/`AccountingService`/`LegalService` y `FAQPage` solo con datos verificables), `sitemap.xml`, `robots.txt` y manifest.
-- Las portadas 2 a 5, `/equipo` y `/marca` llevan `noindex`: solo se indexa `/`. Para cambiar la portada principal, usa otro componente de portada en `src/app/page.tsx`.
+- Las portadas 2 a 5, `/equipo`, `/design` y `/marca` llevan `noindex`: solo se indexa `/`. Para cambiar la portada principal, usa otro componente de portada en `src/app/page.tsx`.
 - `/og.png` se genera en el build con las fuentes de la marca y se sirve como `image/png` (el `opengraph-image` sin extensión de un export estático no siempre lo hace).
 - Cabeceras de seguridad y caché en `public/_headers` (`/_next/static/*` inmutable).
 - Hidratación por tramos con `<Suspense>` por sección. La portada va fuera de ellos a propósito: así siempre está en el HTML inicial (dentro, React podía insertarla después del primer pintado). Las piezas decorativas de la portada 5 (notas, tarjetas flotantes y gráfica) solo se montan en las pantallas donde se ven. Se precargan ~184 KB de fuentes (antes ~306 KB): la cursiva del logotipo es una instancia estática de 26 KB. Todas usan `swap` con métricas de respaldo ajustadas, así que el cambio de fuente no mueve el diseño (CLS 0).

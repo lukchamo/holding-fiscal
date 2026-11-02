@@ -1,0 +1,819 @@
+/* ==========================================================================
+   Panel · Alternativa C «Calendario»: el tiempo manda
+   Carriles por sociedad, barras por plazo (de la preparación al vencimiento).
+   Los estados usan sus colores de estado, siempre con icono o texto.
+   ========================================================================== */
+.page {
+  max-width: 1320px;
+}
+
+.head h1 {
+  font-size: clamp(30px, 1.6vw + 22px, 42px);
+  line-height: 1.1;
+}
+
+.sub {
+  margin: 6px 0 0;
+  max-width: 44rem;
+  font-size: 15px;
+  color: var(--slate);
+}
+
+/* ---------- Filtro por estado ---------- */
+.toolbar {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.filters {
+  display: flex;
+  gap: 6px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line2);
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filters button i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.filters button[data-kind="you"] i {
+  background: var(--ember);
+}
+
+.filters button[data-kind="doing"] i {
+  background: var(--ink);
+}
+
+.filters button[data-kind="scheduled"] i {
+  border: 1.5px dashed var(--slate);
+}
+
+.filters button[data-kind="done"] i {
+  background: var(--line2);
+}
+
+.filters button[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.n {
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+}
+
+.filters button:focus-visible,
+.todayBtn:focus-visible,
+.itemBtn:focus-visible,
+.row:focus-visible,
+.close:focus-visible,
+.primary:focus-visible,
+.ghost:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--ember) 55%, transparent);
+  outline-offset: 2px;
+}
+
+/* ---------- Cronograma ---------- */
+.gantt {
+  display: none;
+  margin-top: 18px;
+  padding: 16px 0 6px;
+  border-radius: 20px;
+  border: 1px solid var(--hair);
+  background: var(--panel);
+}
+
+@media (min-width: 760px) {
+  .gantt {
+    display: block;
+  }
+}
+
+.ganttHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  padding: 0 18px 12px;
+}
+
+.ganttHead h2 {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 12.5px;
+  color: var(--slate);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend i {
+  width: 16px;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.todayBtn {
+  margin-left: auto;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line2);
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.scroller {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.canvas {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.months {
+  position: relative;
+  height: 30px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.months span {
+  position: absolute;
+  top: 6px;
+  padding-left: 8px;
+  font-size: 12.5px;
+  font-weight: 650;
+  text-transform: capitalize;
+  color: var(--slate);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.lane {
+  position: relative;
+  border-bottom: 1px solid var(--hair);
+}
+
+.lane:last-of-type {
+  border-bottom: 0;
+}
+
+/* La etiqueta del carril se queda fija al desplazar el cronograma */
+.laneLabel {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 12px 0 18px;
+  background: var(--panel);
+  border-right: 1px solid var(--hair);
+}
+
+.laneLabel i {
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+  border-radius: 3px;
+}
+
+.laneLabel b {
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.3;
+}
+
+.laneLabel small {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--slate);
+}
+
+.track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.monthLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--hair);
+}
+
+/* Cada plazo: su nombre encima y una barra fina de la preparación al vencimiento */
+.item {
+  position: absolute;
+  height: 34px;
+}
+
+.itemBtn {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: opacity var(--dur-2) ease;
+}
+
+/* La etiqueta tapa la línea de hoy para que se lea entera */
+.itemLabel {
+  position: relative;
+  z-index: 3;
+  justify-self: start;
+  padding-right: 4px;
+  border-radius: 4px;
+  background: var(--panel);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 650;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.itemBtn:hover .itemLabel {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.thin,
+.legend i {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--ink);
+}
+
+.thin[data-state="you"],
+.legend i[data-state="you"] {
+  background: var(--ember);
+}
+
+.thin[data-state="prep"],
+.legend i[data-state="prep"] {
+  background: color-mix(in srgb, var(--ink) 50%, var(--panel));
+}
+
+.thin[data-state="review"],
+.legend i[data-state="review"] {
+  background: var(--ink);
+}
+
+.thin[data-state="scheduled"],
+.legend i[data-state="scheduled"] {
+  border: 1.5px dashed var(--slate);
+  background: transparent;
+}
+
+.thin[data-state="done"],
+.legend i[data-state="done"] {
+  background: var(--line2);
+}
+
+.itemBtn[data-state="you"] .itemLabel svg {
+  color: var(--ember-ink);
+}
+
+.itemBtn[data-state="done"] .itemLabel {
+  color: var(--slate);
+}
+
+.itemBtn[data-state="done"] .itemLabel svg {
+  color: var(--green);
+}
+
+.itemBtn[data-dim="true"] {
+  opacity: 0.22;
+}
+
+/* Hito: el día que vence */
+.milestone {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--ink);
+  box-shadow: 0 0 0 2px var(--panel);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.milestone[data-state="you"] {
+  background: var(--ember-ink);
+}
+
+.milestone[data-state="done"] {
+  background: var(--slate);
+}
+
+.milestone[data-state="scheduled"] {
+  background: var(--slate);
+}
+
+/* Hoy */
+.today {
+  position: absolute;
+  top: 30px;
+  bottom: 26px;
+  z-index: 2;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--ember);
+  pointer-events: none;
+}
+
+.today span {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--ember);
+  color: #2d2f34;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ---------- Agenda ---------- */
+.agenda {
+  margin-top: 22px;
+}
+
+.agenda h2 {
+  font-size: 24px;
+}
+
+.agendaMonth {
+  margin-top: 14px;
+}
+
+/* En escritorio, el cronograma ya enseña lo lejano: la agenda se queda con el mes que viene */
+@media (min-width: 760px) {
+  .agendaMonth[data-later="true"] {
+    display: none;
+  }
+}
+
+.agendaTitle {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.agenda ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--hair);
+  background: var(--panel);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+@media (min-width: 560px) {
+  .row {
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+  }
+}
+
+.row[data-state="you"] {
+  border-color: color-mix(in srgb, var(--ember) 60%, var(--hair));
+}
+
+.date {
+  height: 56px;
+  border-radius: 12px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: var(--dust);
+  line-height: 1.1;
+}
+
+.date b {
+  font-size: 19px;
+}
+
+.date small {
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.row[data-state="you"] .date {
+  background: var(--ember-tint);
+}
+
+.rowBody {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.rowBody b {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.rowMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--slate);
+}
+
+.rowMeta i {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.chip {
+  justify-self: start;
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line2);
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--char);
+  white-space: nowrap;
+}
+
+@media (min-width: 560px) {
+  .row .chip {
+    grid-column: auto;
+  }
+}
+
+.chip[data-state="you"] {
+  border-color: transparent;
+  background: var(--ember-tint);
+  color: var(--ember-ink);
+}
+
+.chip[data-state="done"] {
+  border-color: transparent;
+  background: var(--green-tint);
+  color: var(--green);
+}
+
+.chip[data-state="prep"],
+.chip[data-state="review"] {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.chip[data-state="scheduled"] {
+  border-style: dashed;
+}
+
+.none {
+  color: var(--slate);
+}
+
+.past {
+  margin-top: 16px;
+}
+
+.past summary {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  font-weight: 650;
+  color: var(--char);
+  cursor: pointer;
+}
+
+.past ul {
+  margin-top: 6px;
+}
+
+/* ---------- Ficha lateral ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background: color-mix(in srgb, #1b1a18 40%, transparent);
+  animation: fade 200ms ease both;
+}
+
+@media (min-width: 760px) {
+  .overlay {
+    align-items: stretch;
+  }
+}
+
+.drawer {
+  position: relative;
+  width: 100%;
+  max-height: 88dvh;
+  overflow-y: auto;
+  padding: 20px 20px 24px;
+  border-radius: 24px 24px 0 0;
+  background: var(--panel);
+  box-shadow: var(--shadow-lg);
+  animation: sheet 320ms var(--ease-out-expo) both;
+}
+
+@media (min-width: 760px) {
+  .drawer {
+    width: 420px;
+    max-height: none;
+    border-radius: 0;
+    padding: 24px 26px 28px;
+    animation-name: slide;
+  }
+}
+
+.dHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.company {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--char);
+}
+
+.company i {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.close {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--hair);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.drawer h2 {
+  margin-top: 14px;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.dMeta {
+  margin: 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  font-size: 14px;
+  color: var(--slate);
+}
+
+.dMeta .chip {
+  grid-column: auto;
+}
+
+.steps {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.steps li {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--slate);
+}
+
+.steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 38px;
+  bottom: -14px;
+  width: 2px;
+  background: var(--line2);
+}
+
+.steps li[data-step="done"]:not(:last-child)::after {
+  background: var(--green);
+}
+
+.steps b {
+  display: block;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.steps li[data-step="next"] {
+  opacity: 0.7;
+}
+
+.face {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.face svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.you {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ember);
+  color: #2d2f34;
+  font-family: var(--serif);
+  font-size: 14px;
+}
+
+.steps li[data-step="now"] b::after {
+  content: "Ahora";
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--ember-tint);
+  color: var(--ember-ink);
+  font-size: 11.5px;
+  font-weight: 700;
+  vertical-align: 2px;
+}
+
+.dSeal {
+  margin-top: 18px;
+}
+
+.dActions {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.primary,
+.ghost {
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ghost {
+  border: 1px solid var(--line2);
+  background: transparent;
+  color: var(--ink);
+}
+
+.dNote {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  color: var(--slate);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes sheet {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}

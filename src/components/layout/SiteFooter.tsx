@@ -30,6 +30,11 @@ export function SiteFooter({ hero }: { hero?: HeroVariant }) {
           <p>
             <Link href="/marca">Propuesta de marca y logotipo</Link>
           </p>
+          <p>
+            <Link href="/design" prefetch={false}>
+              Panel operativo: tres alternativas de UI
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
